@@ -1,0 +1,33 @@
+Source Table,Source Columns,Aggregate Function,Target Table,Target Columns,Critical Data Elements
+customer_master,customer_id,,temp_customer_sales,customer_id,PII handling, Data accuracy
+orders,customer_id,,temp_customer_sales,total_spent,PII handling, Data accuracy
+orders,order_total,SUM,temp_customer_sales,total_spent,PII handling, Data accuracy
+orders,order_id,COUNT,temp_customer_sales,total_orders,PII handling, Data accuracy
+orders,order_date,MAX,temp_customer_sales,last_order_date,PII handling, Data accuracy
+orders,order_total,AVG,temp_customer_sales,avg_order_value,PII handling, Data accuracy
+orders,quantity,SUM,temp_product_sales,product_id,Data accuracy, Sales calculations
+product_master,product_id,,temp_product_sales,product_id,Data integrity checks
+orders,product_id,,temp_product_sales,total_quantity_sold,Data accuracy, Sales calculations
+orders,order_total,SUM,temp_product_sales,total_revenue,Data accuracy, Sales calculations
+orders,quantity,AVG,temp_product_sales,avg_selling_price,Data accuracy, Sales calculations
+orders,order_id,,temp_order_summary,order_id,Data integrity checks
+orders,customer_id,,temp_order_summary,customer_id,Data integrity checks
+orders,product_id,,temp_order_summary,product_id,Data integrity checks
+orders,order_total,,temp_order_summary,order_total,Data integrity checks
+orders,order_date,,temp_order_summary,order_date,Data integrity checks
+orders,order_status,,temp_order_summary,order_status,Data integrity checks
+temp_customer_sales,,SUM,customer_sales_mart,customer_id,Data consistency
+temp_customer_sales,,SUM,customer_sales_mart,total_spent,Data consistency
+temp_customer_sales,,COUNT,customer_sales_mart,total_orders,Data consistency
+temp_customer_sales,,MAX,customer_sales_mart,last_order_date,Data consistency
+temp_customer_sales,,AVG,customer_sales_mart,avg_order_value,Data consistency
+temp_product_sales,,SUM,product_sales_mart,product_id,Data integrity checks
+temp_product_sales,,SUM,product_sales_mart,total_quantity_sold,Data integrity checks
+temp_product_sales,,SUM,product_sales_mart,total_revenue,Data integrity checks
+temp_product_sales,,AVG,product_sales_mart,avg_selling_price,Data integrity checks
+temp_order_summary,,,order_summary_mart,order_id,Data accuracy
+temp_order_summary,,,order_summary_mart,customer_id,Data accuracy
+temp_order_summary,,,order_summary_mart,product_id,Data accuracy
+temp_order_summary,,,order_summary_mart,order_total,Data accuracy
+temp_order_summary,,,order_summary_mart,order_date,Data accuracy
+temp_order_summary,,,order_summary_mart,order_status,Data accuracy

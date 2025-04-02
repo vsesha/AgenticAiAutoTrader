@@ -1,0 +1,79 @@
+CREATE OR REPLACE PROCEDURE process_sales_data()
+RETURNS STRING
+LANGUAGE SQL
+AS
+$$
+DECLARE error_message STRING;
+BEGIN
+    -- Begin Transaction
+    BEGIN;
+    
+    -- Clear Intermediate Tables
+    TRUNCATE TABLE temp_customer_sales;
+    TRUNCATE TABLE temp_product_sales;
+    TRUNCATE TABLE temp_order_summary;
+    
+    -- Step 1: Aggregate Customer Sales Data into Temp Table
+    INSERT INTO temp_customer_sales (customer_id, total_spent, total_orders, last_order_date, avg_order_value)
+    SELECT 
+        c.customer_id,
+        SUM(o.order_total) AS total_spent,
+        COUNT(o.order_id) AS total_orders,
+        MAX(o.order_date) AS last_order_date,
+        CASE WHEN COUNT(o.order_id) > 0 THEN SUM(o.order_total) / COUNT(o.order_id) ELSE 0 END AS avg_order_value
+    FROM orders o
+    JOIN customer_master c ON o.customer_id = c.customer_id
+    JOIN customer_details d ON c.customer_id = d.customer_id
+    WHERE o.order_status = 'Completed'
+    GROUP BY c.customer_id;
+    
+    -- Step 2: Aggregate Product Sales Data into Temp Table
+    INSERT INTO temp_product_sales (product_id, total_quantity_sold, total_revenue, avg_selling_price)
+    SELECT 
+        p.product_id,
+        SUM(o.quantity) AS total_quantity_sold,
+        SUM(o.order_total) AS total_revenue,
+        CASE WHEN SUM(o.quantity) > 0 THEN SUM(o.order_total) / SUM(o.quantity) ELSE 0 END AS avg_selling_price
+    FROM orders o
+    JOIN product_master p ON o.product_id = p.product_id
+    JOIN product_details d ON p.product_id = d.product_id
+    WHERE o.order_status = 'Completed'
+    GROUP BY p.product_id;
+    
+    -- Step 3: Create Order Summary in Temp Table
+    INSERT INTO temp_order_summary (order_id, customer_id, product_id, order_total, order_date, order_status)
+    SELECT 
+        o.order_id,
+        o.customer_id,
+        o.product_id,
+        o.order_total,
+        o.order_date,
+        o.order_status
+    FROM orders o
+    WHERE o.order_status IN ('Completed', 'Pending');
+    
+    -- Step 4: Insert Processed Data into Final Data Mart Tables
+    INSERT INTO customer_sales_mart (customer_id, total_spent, total_orders, last_order_date, avg_order_value)
+    SELECT * FROM temp_customer_sales;
+    
+    INSERT INTO product_sales_mart (product_id, total_quantity_sold, total_revenue, avg_selling_price)
+    SELECT * FROM temp_product_sales;
+    
+    INSERT INTO order_summary_mart (order_id, customer_id, product_id, order_total, order_date, order_status)
+    SELECT * FROM temp_order_summary;
+    
+    -- Clear Intermediate Tables after Successful Insert
+    TRUNCATE TABLE temp_customer_sales;
+    TRUNCATE TABLE temp_product_sales;
+    TRUNCATE TABLE temp_order_summary;
+    
+    -- Commit Transaction
+    COMMIT;
+    
+    RETURN 'Sales Data Processing Completed Successfully';
+EXCEPTION WHEN OTHERS THEN
+    ROLLBACK;
+    LET error_message = ERROR_MESSAGE();
+    RETURN 'Error: ' || error_message;
+END;
+$$;

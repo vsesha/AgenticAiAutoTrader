@@ -1,0 +1,24 @@
+Prerequisites for Running OpenAI Agents SDK
+--------------------------------------------
+
+* System Requirements:
+----------------------
+- Python 3.8 or higher
+- Pip (latest version recommended) → Upgrade if needed:
+
+* Dependencies to Install: 
+---------------------------
+- Core package:
+    pip install openai-agents
+
+* Open API account:
+--------------------
+- Create your account with Open API platform: https://platform.openai.com/
+- For Open API integration, you must have a minimum balance ($5)
+
+* Environment setup:
+--------------------
+Set up OpenAI API Key in .env file:
+The OpenAI Agents SDK requires an API key to interact with OpenAI's services.
+It's recommended to store this key in an environment variable for security. 
+You can create a .env file in your project directory and add your OpenAI API key

@@ -1,0 +1,27 @@
+Questions for sales agent
+--------------------------------
+What is the most economical car you have in your inventory?
+and how about Truck?
+What's the most expensive car you have in your inventory?
+Compare the Mercedes AMG to that of carvana or autotrader?
+
+Questions for financial analyst
+--------------------------------
+What's the total cars sold on 3/21/25
+And no of trucks sold on the same day?
+What's the total no of cars and trucks sold for 2025 till date?
+On a month on month basis, compare the total number of cars, trucks and service plans sold in 2025 (till date) to 2024 (for those specific months), and how are we positioned ?
+On a year on year basis, with 10 weeks moving average, give me the cars, trucks and service plans sales comparision for last 5 years (including 2025 to whatever month we have) with % changes YOY and how are we positioned? and send that table details in an executive email with finanical analysis and steps to improve to vasudavesnow@gmail.com addressed as Mr Vasu, from AI Analyst - Finance Department
+
+Developer Effi
+--------------------------------
+Using salesforce_orderflow.json how many pipelines are there, give me source application name, source tables, source columns, target tables, target columns. give this in a table format
+Using salesforce_orderflow.json give me details of each pipeline, child-pipelines, activities, source application name, source tables, source columns, target tables, target columns. give this in a csv format. send this table details to the developer Vasu to his email vasudavesnow@gmail.com
+Using salesforce_orderflow.json give me details of each pipeline, child-pipelines, activities, source application name, source tables, source columns, target tables, target columns. give this in a csv format. 
+
+Using salesforce_orderflow.json, can you add proper developer comments and write a good description of that that ADF pipeline does, and write all those details. send the details to Vasu to his email vasuops@gmail.com
+Using the procedure - ProcessSales_SQL_PROCEDURE, can you give me all the source tables and source columns refered and target  tables and target columns it's inserted in a good csv  format and add all critical data elements from data governance standpoint
+
+Analyze the SQL procedure ProcessSales_SQL_PROCEDURE in FULL DETAIL, strictly preserving the execution order, dependencies, lineage, including all temp tables and views.  Extract every source table, table type (Temp or Base or View etc)  and column used, ensuring one row per source column in the output, along with its data type, constraints, aggregation functions (SUM, AVG, etc.), joins, filters, transformations. the final output should be in this format. make sure to include temp tables as source if they are used for populating data mart tables and vice-versa the final output should be in a structured CSV with exactly this details Source Table, Table Type, Source Column, AggFunction,  Target Table, Target Column. If no AggFunctions are used, default it to NONE and make sure to include data marts which could either be source or target
+Analyze the SQL procedure ProcessSales_SQL_PROCEDURE in FULL DETAIL and produce a full list of all  unit test cases, every line of code to be covered, in .sql, which covers setup & teradown, postive tests, negative tests and assertions. for negative test cases, add lot more complex scenarios and also consider scenarios like null values or character values and more. atleast have 25 test case data not just 1 or 2 records
+

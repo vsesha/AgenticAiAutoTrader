@@ -1,0 +1,97 @@
+{
+    "name": "CustomerDataPipeline",
+    "properties": {
+      "activities": [
+        {
+          "name": "Execute Data Ingestion Pipeline",
+          "type": "ExecutePipeline",
+          "typeProperties": {
+            "pipeline": {
+              "referenceName": "CustomerDataIngestionPipeline",
+              "type": "PipelineReference"
+            }
+          }
+        },
+        {
+          "name": "Execute Data Transformation Pipeline",
+          "type": "ExecutePipeline",
+          "dependsOn": [
+            {
+              "activity": "Execute Data Ingestion Pipeline",
+              "dependencyConditions": ["Succeeded"]
+            }
+          ],
+          "typeProperties": {
+            "pipeline": {
+              "referenceName": "CustomerDataTransformationPipeline",
+              "type": "PipelineReference"
+            }
+          }
+        }
+      ]
+    }
+  },
+  
+  {
+    "name": "CustomerDataIngestionPipeline",
+    "properties": {
+      "activities": [
+        {
+          "name": "Copy Customer Data to Staging",
+          "type": "Copy",
+          "typeProperties": {
+            "source": {
+              "type": "AzureSqlSource",
+              "sqlReaderQuery": "SELECT * FROM dbo.CustomerSourceTable"
+            },
+            "sink": {
+              "type": "AzureBlobSink",
+              "folderPath": "staging/customer_data/",
+              "fileName": "customer_data_ingestion.json"
+            }
+          }
+        }
+      ]
+    }
+  },
+  
+  {
+    "name": "CustomerDataTransformationPipeline",
+    "properties": {
+      "activities": [
+        {
+          "name": "Transform & Load Customer Data",
+          "type": "DataFlow",
+          "typeProperties": {
+            "dataFlow": {
+              "referenceName": "CustomerTransformDataFlow",
+              "type": "DataFlowReference"
+            },
+            "source": {
+              "dataset": {
+                "referenceName": "StagingCustomerDataset",
+                "type": "DatasetReference"
+              }
+            },
+            "sink": {
+              "dataset": {
+                "referenceName": "CustomerTargetSQLDataset",
+                "type": "DatasetReference"
+              }
+            }
+          }
+        },
+        {
+          "name": "Execute Stored Procedure - Customer Data Processing",
+          "type": "SqlServerStoredProcedure",
+          "typeProperties": {
+            "storedProcedureName": "usp_CustomerPostLoadProcessing",
+            "database": "CustomerDB",
+            "schema": "dbo",
+            "table": "FinalCustomerTable"
+          }
+        }
+      ]
+    }
+  }
+  

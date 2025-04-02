@@ -1,0 +1,5 @@
+python-dotenv
+openai-agents
+python-dotenv  # For managing environment variables (optional)
+pydantic  # For data validation (optional)
+agentops  # For agent monitoring and logging (optional)
