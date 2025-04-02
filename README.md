@@ -1,5 +1,5 @@
 
-# **AUTO-Trader powered by Agentic AI **  
+# **Agentic AI in Action: AUTO-Trader Powered by OpenAI's Agent SDK  **  
 
 ## **Overview**  
 This application leverages **OpenAI's Agent SDK** and a suite of specialized AI agents to support various tasks, including **File Search, Web Search, Tools Integration, Handoffs, and Developer Efficiency Agents**. It enhances sales assistance, financial analysis, and code/documentation generation for structured files like JSON and SQL stored procedures.  
