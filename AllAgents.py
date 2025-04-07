@@ -1,6 +1,6 @@
 from agents import Agent,FunctionTool, Runner, WebSearchTool, FileSearchTool
 import asyncio
-from LIMITED_SALE import HOT_PICKS
+from Inventories import INVENTORY_LIST
 from CustomTax import calculate_tax
 from Sales_FileVector import prepSalesFile
 from SendMail import send_email
@@ -30,7 +30,7 @@ internal_sales_agent = Agent(
 
 
 internal_sales_agent = Agent(name="Hot Pick Sales Assistant",
-                instructions=f"You are a very helpful, charming, smart sales associate at AI-Autos, respond to questions based on the Items in : \n\n{HOT_PICKS}",
+                instructions=f"You are a very helpful, charming, smart sales associate at AI-Autos, respond to questions based on the Items in : \n\n{INVENTORY_LIST}",
                 model=ai_model_to_use,
                 tools=[calculate_tax]
                 )

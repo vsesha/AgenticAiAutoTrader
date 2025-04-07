@@ -50,7 +50,6 @@ This application serves as a hands-on exploration of OpenAI's Agent SDK in real-
 
 ### **2. API Key and Configuration**  
 * Open API account:
---------------------
 - Create your account with Open API platform: https://platform.openai.com/
 - For Open API integration, you must have a minimum balance ($5)
 
@@ -62,11 +61,13 @@ OPENAI_API_KEY=your_api_key_here
 ### **3. Running the Application**  
 Execute the script:  
 ```bash
-python main.py
+python AutoAiTrader.py
 ```
 ###**4. SMTP/Email configuration**
 In this application I use SMTP libraries to send email. Make sure to set the following environment variables
+```txt
   SENDER_EMAIL_ID
   SENDER_EMAIL_PWD 
+```
 also if you are using Gmail, enable App Password for authentication.
 Follow instructions: https://support.google.com/accounts/answer/185833?hl=en
