@@ -2,18 +2,20 @@ Questions for sales agent
 --------------------------------
 What is the most economical car you have in your inventory?
 and how about Truck?
-What's the most expensive car you have in your inventory?
-Compare the Mercedes AMG to that of carvana or autotrader?
+What's the cost of BYD car and potential tariff?
 
 Questions for financial analyst
 --------------------------------
 What's the total cars sold on 3/21/25
-And no of trucks sold on the same day?
 What's the total no of cars and trucks sold for 2025 till date?
 On a month on month basis, compare the total number of cars, trucks and service plans sold in 2025 (till date) to 2024 (for those specific months), and how are we positioned ?
-On a year on year basis, with 10 weeks moving average, give me the cars, trucks and service plans sales comparision for last 5 years (including 2025 to whatever month we have) with % changes YOY and how are we positioned? and send that table details in an executive email with finanical analysis and steps to improve to vasudavesnow@gmail.com addressed as Mr Vasu, from AI Analyst - Finance Department
+On a year on year basis, with 10 weeks moving average, give me the cars, trucks and service plans sales comparision for last 5 years (including 2025 to whatever month we have) with % changes YOY and how are we positioned? and send that table details in an executive email with finanical analysis and steps to improve to vasudavesnow@gmail.com addressed as Mr. Vasu, from AI Analyst - Finance Department
+
+On a year on year basis, with 10 weeks moving average, give me the cars, trucks and service plans sales comparision for last 5 years (including 2025 to whatever month we have) with % changes YOY and how are we positioned? and send that table details in an executive email with finanical analysis along with details steps to improve AND send that To vasudavesnow@gmail.com  From: AI Analyst, Finance Department
+
 
 Developer Effi
+
 --------------------------------
 Using salesforce_orderflow.json how many pipelines are there, give me source application name, source tables, source columns, target tables, target columns. give this in a table format
 Using salesforce_orderflow.json give me details of each pipeline, child-pipelines, activities, source application name, source tables, source columns, target tables, target columns. give this in a csv format. send this table details to the developer Vasu to his email vasudavesnow@gmail.com

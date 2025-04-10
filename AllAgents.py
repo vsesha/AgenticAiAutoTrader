@@ -1,7 +1,7 @@
 from agents import Agent,FunctionTool, Runner, WebSearchTool, FileSearchTool
 import asyncio
 from Inventories import INVENTORY_LIST
-from CustomTax import calculate_tax
+from CustomTarrifs import calculate_tariff
 from Sales_FileVector import prepSalesFile
 from SendMail import send_email
 from JSON_FileVector import prepJSONFileVector
@@ -29,10 +29,11 @@ internal_sales_agent = Agent(
     ) """
 
 
-internal_sales_agent = Agent(name="Hot Pick Sales Assistant",
-                instructions=f"You are a very helpful, charming, smart sales associate at AI-Autos, respond to questions based on the Items in : \n\n{INVENTORY_LIST}",
+internal_sales_agent = Agent(name="Internal Sales Assistant",
+                instructions=f"You are a very helpful, charming, smart sales associate at AI-Autos, respond to questions based on the Items in : \n\n{INVENTORY_LIST}."
+                  "Also, depending on the origin counrty of the car, send the 2 or 3 letter counrty code it to calcualte_tarrif function. Be very clear on courty code and double check, and the tarriff amount clearly",
                 model=ai_model_to_use,
-                tools=[calculate_tax]
+                tools=[calculate_tariff]
                 )
 
 
@@ -45,7 +46,7 @@ external_sales_agent = Agent(
     instructions=(
         "You are a robust and highly resourceful sales assistant specializing in finding Cars and Trucks from various stores. "
         "You can search the web in real-time to provide up-to-date availability, pricing, and specifications for different vehicles.\n\n"
-
+        "when a question regarding tariff is asked, extract the origin counrty of the car, send the 2 or 3 letter counrty code it to calculate_tariff function tool. Be very clear on courty code and double check, and the tarriff amount clearly"
         "1️ **Web Search for Vehicles:** Use the Web Search tool to retrieve the latest car and truck listings.\n"
         "2️ **Accuracy & Relevance:** Ensure the results match the customer’s requested make, model, and preferences.\n"
         "3️ **Comparative Analysis:** If multiple options exist, provide a comparison of features, price, and dealer ratings.\n"
@@ -56,7 +57,7 @@ external_sales_agent = Agent(
         "Your role is to be a knowledgeable virtual sales assistant, helping customers find their perfect vehicle efficiently and effectively."
     ),
     model=ai_model_to_use,
-    tools=[WebSearchTool()]
+    tools=[WebSearchTool(), calculate_tariff]
 )
 
 print("\nExternal Search Agent initialized...")

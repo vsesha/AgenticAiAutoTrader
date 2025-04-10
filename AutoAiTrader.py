@@ -28,13 +28,12 @@ def conversationMemory(result, new_input):
 async def main():
 
     result = None
-    new_prompt = input("Welcome to SMART analyst! I can help you with the following:\n"
-                        "* Hot picks or discounted vehicles for sale\n"
-                        "* Prices of vehicles outside my inventory\n"
+    new_prompt = input("\nWelcome to SMART analyst! I can help you with the following:\n"
+                        "* Discounted vehicles for sale in my Inventory\n"
                         "* Sales Analysis and forecast\n"
                         "* Executive Email assistant, who can help you with crafting and send emails.\n"
                         "* Also, you can ask me about the JSON file details. \n"
-                        "* All powered by OpenAI's Agentic AI\n What do you like me to work on?")
+                        "* All powered by OpenAI's Agentic AI\n What do you like me to work on?: ")
     
     while new_prompt != "quit":
 
