@@ -68,6 +68,7 @@ def prepSalesFile(directory):
 import requests
 from io import BytesIO
 from openai import OpenAI
+from GPT_ModelUser import ai_model_to_use
 
 client = OpenAI()
 vectorstoreid = ""
@@ -101,7 +102,7 @@ def prepSalesFile():
 
 
     response = client.responses.create(
-        model="gpt-4-turbo",
+        model=ai_model_to_use,
         input="understand the sales details properly and be ready for questions",
         tools=[{
             "type": "file_search",

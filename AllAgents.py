@@ -1,13 +1,14 @@
 from agents import Agent,FunctionTool, Runner, WebSearchTool, FileSearchTool
 import asyncio
 from Inventories import INVENTORY_LIST
-from CustomTarrifs import calculate_tariff
+from CustomTariffs import calculate_tariff
 from Sales_FileVector import prepSalesFile
 from SendMail import send_email
 from JSON_FileVector import prepJSONFileVector
 from SQL_FileVector import prepSQLFileVector
+from GPT_ModelUser import ai_model_to_use
 
-ai_model_to_use = "gpt-4o-mini"
+
 
 print("\nInitializing Agents...")
 """
@@ -44,9 +45,9 @@ print("\nInternal Sales Agent initialized...")
 external_sales_agent = Agent(
     name="External Assistant",
     instructions=(
-        "You are a robust and highly resourceful sales assistant specializing in finding Cars and Trucks from various stores. "
+        "You are a robust and highly resourceful sales assistant specializing in finding Cars and Trucks from various stores. If the question is about Tariff use calculate_tariff function tool "
         "You can search the web in real-time to provide up-to-date availability, pricing, and specifications for different vehicles.\n\n"
-        "when a question regarding tariff is asked, extract the origin counrty of the car, send the 2 or 3 letter counrty code it to calculate_tariff function tool. Be very clear on courty code and double check, and the tarriff amount clearly"
+        "when a question regarding tariff is asked, extract the origin counrty of the car AND invoke the function tool calculate_tariff from CustomTariff.py by passing  send the 2 or 3 letter counrty code it to function tool. Be very clear on courty code and double check, and the tarriff amount clearly"
         "1️ **Web Search for Vehicles:** Use the Web Search tool to retrieve the latest car and truck listings.\n"
         "2️ **Accuracy & Relevance:** Ensure the results match the customer’s requested make, model, and preferences.\n"
         "3️ **Comparative Analysis:** If multiple options exist, provide a comparison of features, price, and dealer ratings.\n"

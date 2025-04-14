@@ -2,6 +2,8 @@ import requests
 from io import BytesIO
 from openai import OpenAI
 
+from GPT_ModelUser import ai_model_to_use
+
 client = OpenAI()
 vectorstoreid = ""
 def create_file(client, file_path):
@@ -34,7 +36,7 @@ def prepJSONFileVector():
 
 
     response = client.responses.create(
-        model="gpt-4-turbo",
+        model=ai_model_to_use,
         input="understand the JSON file detail and be ready to provide data models and also source, target and all other details properly and be ready for questions",
         tools=[{
             "type": "file_search",

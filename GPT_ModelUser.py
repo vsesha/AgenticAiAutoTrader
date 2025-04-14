@@ -1,0 +1,1 @@
+ai_model_to_use = "gpt-4o-mini"

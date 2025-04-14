@@ -36,7 +36,7 @@ async def calculate_tariff(order_total: float, origin_country_of_car: str) -> st
         tariff_rate = 0
     elif origin in ["japan","jp"]:
         tariff_rate = 30
-    elif origin in ["eu", "europe", "germany", "france", "italy", "de", "se", "gb", "uk"]:
+    elif origin in ["eu", "europe", "germany", "france", "italy", "de", "se", "gb", "uk", "it"]:
         tariff_rate = 40
     elif origin in ["china","cn"]:
         tariff_rate = 104
@@ -46,5 +46,7 @@ async def calculate_tariff(order_total: float, origin_country_of_car: str) -> st
     
     response = "The tariff amount on your car originated from ${origin} is ${tariff_amount:.2f}. " \
     "Your total with tax is ${total_with_tariff:.2f}."
-    
+
+    print(response)
+
     return response
